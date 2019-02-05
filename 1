@@ -1,0 +1,90 @@
+Block
+
+A block is an anonymous piece of code, it can accept input in form of arguments. A Block is same as that of a method,the difference is that it does not have a name and does not have an object.
+Blocks can created by passing them into amethod when it is called.
+Block is represented as follows
+eg : 5.times do		OR   5.times{ p "hello" }
+	p "hello"
+     end
+
+Block arguments
+
+Blocks make a lot of sense on methods that are defined on collections like arrays and hashes.
+
+eg : 	a = [1,2,3]
+	a.each do |sum|
+		p "The array elemets are : #{sum}
+	end
+
+For blocks, do |sum| is the same that is def add (sum) for a method definition, except that the method wants a name while a block is anonymous: |sum| and (sum) both are argument lists. The first one is used for blocks, the second one for methods.
+
+Block return values
+
+p [1, 2, 3, 4, 5].collect { |number| number + 1 }
+
+This will take the array of numbers, and transform it into another array.
+
+Proc
+
+A Proc object is a block of code that has been bound to a set of local variables.Once a Proc object has been bound it can be called in different contexts and still be able to access those variables.
+
+eg:   def sum(s)
+	return Proc.new {|n| n**s}
+      end
+      p = sum(3)
+      p.call(1)   # 3
+.call is what the Proc takes in as n.There is only one public Proc class method, which is new.
+
+===
+
+Similar to case statement in other languages.
+
+Difference between lamda and proc
+
+A common reason why would you prefer a Lambda over a Proc is that Lambda’s care about how many parameters they receive
+
+Proc parameters
+When you call parameters on a Proc you get to see information about the parameters that make up the Proc.
+my_proc = Proc.new {|a, b=5, *c| "hai" }
+my_proc.parameters
+# Returns [[:opt, :a], [:opt, :b], [:rest, :c]]
+
+opt means optional
+
+Procs in Rails
+Procs most frequently is when writing models in Rails and setting scopes.
+
+lambda
+
+A lambda is also commonly referred to as an anonymous function.
+syntax : lambda = lambda {} OR lambda = ->() {}  
+If you call the class method you will see that a lambda is actually an instance of the Proc class , that is lamba.class  
+
+eg : lambda = -> (name) { puts "Hello #{name}" }
+     lambda.call("Philip") # Output Hello Philip
+
+Use of the return statement 
+A second difference between a lambda and a Proc is how the return statement is handled.
+
+Lamda
+
+def lambda_method  
+-> () { return "I was called from inside the lambda"}.call  
+return "I was called from after the lambda"  
+end  
+
+puts lamda_method
+#Output "I was called from after the lambda"  
+
+proc
+
+def proc_method  
+Proc.new { return "I was called from inside the proc"}.call  
+return "I was called from after the proc"  
+end  
+
+puts proc_method  
+#Output "I was called from inside the proc"  
+     
+  
+
