@@ -1,4 +1,4 @@
-class Addition
+class Multiplication
 	def def_arg(num1 ,num2, num3 = 5)
 		@n1 = num1
 		@n2 = num2
@@ -29,7 +29,7 @@ class Addition
 	end
 
 end
-obj = Addition.new()
+obj = Mult.newiplication()
 obj.def_arg(1,2)
 obj.normal_arg(1,2,3)
 obj.hash_arg(x: 3,y: 3,z: 1)
